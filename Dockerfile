@@ -12,3 +12,6 @@ RUN echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 RUN chmod +x ./kubectl
 RUN mv ./kubectl /usr/local/bin/kubectl
+RUN curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases/latest | grep browser_download | grep linux | cut -d '"' -f 4 | xargs curl -O -L && \
+    mv kustomize_*_linux_amd64 kustomize && \
+    chmod u+x kustomize
